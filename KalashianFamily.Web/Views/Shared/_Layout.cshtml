@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title | The Kalashian Family</title>
+    @Styles.Render("~/Assets/CSS")
+</head>
+<body>
+    <nav>
+        <ul>
+            <li>@Html.ActionLink("Nick & Becky", "Index", "Home")</li>
+            <li>@Html.ActionLink("RSVP", "RSVP", "Wedding")</li>
+            <li>@Html.ActionLink("Now Larimar", "Destination", "Wedding")</li>
+            <li>@Html.ActionLink("Booking", "TravelInfo", "Wedding")</li>
+            <li>@Html.ActionLink("Our Story", "OurStory", "Wedding")</li>
+            <li>@Html.ActionLink("Registries", "Registries", "Wedding")</li>
+            <li>@Html.ActionLink("Guest Book", "GuestBook", "Wedding")</li>
+        </ul>
+    </nav>
+
+    <div class="body-content">
+        @RenderBody()
+        <footer>
+            <p>Copyright &copy; @DateTime.Now.Year @Html.ActionLink("KalashianFamily.com", "Index", "Home"). All Rights Reserved. | Designed, Developed, and Hosted by Connor Grady.</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/Assets/Scripts")
+    @RenderSection("FooterScripts", required: false)
+</body>
+</html>
