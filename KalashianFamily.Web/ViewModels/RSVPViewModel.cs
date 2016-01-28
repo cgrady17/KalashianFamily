@@ -15,7 +15,11 @@ namespace KalashianFamily.Web.ViewModels
         [Required]
         public bool Attending { get; set; }
 
-        [Display(Name = "What's your estimate date of arrival?")]
+        [Display(Name = "Are there others in our Party beside yourself?")]
+        [Required]
+        public bool OtherAttendees { get; set; }
+
+        [Display(Name = "What's your estimated date of arrival?")]
         [Required]
         public DateTime ArrivalDate { get; set; }
 
@@ -24,6 +28,11 @@ namespace KalashianFamily.Web.ViewModels
         [Required]
         [StringLength(75)]
         public string EmailAddress { get; set; }
+
+        [Display(Name = "Attendee Name")]
+        [Required]
+        [StringLength(150, MinimumLength = 5)]
+        public string Name { get; set; }
 
         public List<RsvpAttendeeViewModel> Attendees { get; set; } 
     }

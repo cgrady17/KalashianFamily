@@ -2,45 +2,47 @@
 
 <html>
 <head>
-    <meta charset="utf-8"/>
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title | The Kalashian Family</title>
     @Styles.Render("~/Assets/CSS")
-
-    <style>
-        html, body {
-            background: #000;
-        }
-
-        .body-content {
-            padding: 0;
-            margin: 0;
-            background-image: url(Content/Images/Now-Larimar-Pool-002.jpg);
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: 0% 50%;
-        }
-    </style>
 </head>
 <body>
-    @*<nav>
-        <ul>
-            <li>@Html.ActionLink("Nick & Becky", "Index", "Home")</li>
-            <li>@Html.ActionLink("RSVP", "RSVP", "Wedding")</li>
-            <li>@Html.ActionLink("Now Larimar", "Destination", "Wedding")</li>
-            <li>@Html.ActionLink("Booking", "TravelInfo", "Wedding")</li>
-            <li>@Html.ActionLink("Our Story", "OurStory", "Wedding")</li>
-            <li>@Html.ActionLink("Registries", "Registries", "Wedding")</li>
-            <li>@Html.ActionLink("Guest Book", "GuestBook", "Wedding")</li>
-        </ul>
-    </nav>*@
+    <header class="horizontal-w sm-rgt-mn @(ViewBag.IsHome == true ? "homepage" : "")">
+        <div class="container">
+            <div class="col-md-3 col-sm-3 logo-wrap">
+                <div class="logo">
+                    <a href="@Url.Action("Index", "Home")">
+                        <img src="@Url.Content("~/Content/Images/logo_blue.png")" width="275" id="img-logo-w1" alt="logo" class="img-logo-w1">
+                    </a>
+                </div>
+            </div>
+            <nav id="nav-wrap" class="nav-wrap1 col-md-9 col-sm-9">
+                <div id="menu-icon">
+                    <i class="fa-navicon"></i>
+                    <span>Menu - </span>
+                    <span class="mn-clk">Navigation</span>
+                    <span class="mn-ext1"></span>
+                    <span class="mn-ext2"></span>
+                    <span class="mn-ext3"></span>
+                </div>
+                <div class="container">
+                    <ul id="nav">
+                        <li>@Html.ActionLink("RSVP", "RSVP", "Wedding")</li>
+                        <li>@Html.ActionLink("Now Larimar", "Destination", "Wedding")</li>
+                        <li>@Html.ActionLink("Booking", "TravelInfo", "Wedding")</li>
+                        <li>@Html.ActionLink("Our Story", "OurStory", "Wedding")</li>
+                        <li>@Html.ActionLink("Registries", "Registries", "Wedding")</li>
+                        <li>@Html.ActionLink("Guest Book", "GuestBook", "Wedding")</li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
 
-    <div class="body-content">
-        @RenderBody()       
+    <div>
+        @RenderBody()
     </div>
-    <footer>
-        <p>Copyright &copy; @DateTime.Now.Year @Html.ActionLink("KalashianFamily.com", "Index", "Home"). All Rights Reserved. | Designed, Developed, and Hosted by Connor Grady.</p>
-    </footer>
     @Scripts.Render("~/Assets/Scripts")
     @RenderSection("FooterScripts", required: false)
 </body>

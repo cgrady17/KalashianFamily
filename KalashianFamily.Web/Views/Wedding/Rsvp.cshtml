@@ -1,0 +1,69 @@
+﻿@model KalashianFamily.Web.ViewModels.RsvpViewModel
+@{
+    ViewBag.Title = "RSVP Now";
+}
+<div class="page-header" id="rsvp-header">
+    <div class="page-header-text">
+        <h1>@ViewBag.Title</h1>
+        <h4>Are you attending?</h4>
+    </div>
+</div>
+
+<div class="page-content">
+    <div class="page-sub-header">
+        <h2>RSVP BELOW</h2>
+        <h4>let us know if you'll be celebrating the day with us</h4>
+    </div>
+
+    <div id="rsvp-form-container">
+        @using (Html.BeginForm(null, null, FormMethod.Post, new { @id = "rsvp-form"}))
+        {
+            @Html.AntiForgeryToken()
+            <div class="row">
+                <div class="form-group col-md-6">
+                    @Html.LabelFor(m => m.Name, new { @class = "control-label" })
+                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control", @placeholder = "Full Name" })
+                    @Html.ValidationMessageFor(m => m.Name, null, new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-6">
+                    @Html.LabelFor(m => m.EmailAddress, new { @class = "control-label" })
+                    @Html.TextBoxFor(m => m.EmailAddress, new { @class = "form-control", @placeholder = "Email Address" })
+                    @Html.ValidationMessageFor(m => m.EmailAddress, null, new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <div class="row">
+                        @Html.LabelFor(m => m.Attending, new {@class = "control-label"})
+                        <label class="checkbox-inline">
+                            @Html.RadioButtonFor(m => m.Attending, true, new {@class = "form-control", @data_radio_bool = true}) Yes
+                        </label>
+                        <label class="checkbox-inline">
+                            @Html.RadioButtonFor(m => m.Attending, false, new {@class = "form-control", @data_radio_bool = false}) No
+                        </label>
+                    </div>
+                    @Html.ValidationMessageFor(m => m.Attending, null, new {@class = "text-danger"})
+                </div>
+                <div class="form-group col-md-6" style="display: none;">
+                    @Html.LabelFor(m => m.ArrivalDate, new {@class = "control-label"})
+                    @Html.TextBoxFor(m => m.ArrivalDate, new {@class = "form-control", @placeholder = "mm/dd/yyyy"})
+                    @Html.ValidationMessageFor(m => m.ArrivalDate, null, new {@class = "text-danger"})
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.OtherAttendees, new { @class = "control-label" })
+                <label class="checkbox-inline">
+                    @Html.RadioButtonFor(m => m.OtherAttendees, true, new { @class = "form-control", @data_radio_bool = true }) Yes
+                </label>
+                <label class="checkbox-inline">
+                    @Html.RadioButtonFor(m => m.OtherAttendees, false, new { @class = "form-control", @data_radio_bool = false }) No
+                </label>
+            </div>
+
+        }
+    </div>
+</div>
+@section FooterScripts
+{
+    @Scripts.Render("~/Assets/jQueryVal");
+}

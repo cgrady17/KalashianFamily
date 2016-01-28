@@ -1,13 +1,17 @@
 ﻿@font-face {
     font-family: 'open_sanslight';
     src: url('../fonts/OpenSans/Light/OpenSans-Light-webfont.eot');
-    src: url('../fonts/OpenSans/Light/OpenSans-Light-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/OpenSans/Light/OpenSans-Light-webfont.woff') format('woff'),
-         url('../fonts/OpenSans/Light/OpenSans-Light-webfont.ttf') format('truetype'),
-         url('../fonts/OpenSans/Light/OpenSans-Light-webfont.svg#open_sanslight') format('svg');
+    src: url('../fonts/OpenSans/Light/OpenSans-Light-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/OpenSans/Light/OpenSans-Light-webfont.woff') format('woff'), url('../fonts/OpenSans/Light/OpenSans-Light-webfont.ttf') format('truetype'), url('../fonts/OpenSans/Light/OpenSans-Light-webfont.svg#open_sanslight') format('svg');
     font-weight: normal;
     font-style: normal;
+}
 
+@font-face {
+    font-family: 'open_sansbold';
+    src: url('../fonts/OpenSans/Bold/OpenSans-Bold-webfont.eot');
+    src: url('../fonts/OpenSans/Bold/OpenSans-Bold-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/OpenSans/Bold/OpenSans-Bold-webfont.woff') format('woff'), url('../fonts/OpenSans/Bold/OpenSans-Bold-webfont.ttf') format('truetype'), url('../fonts/OpenSans/Bold/OpenSans-Bold-webfont.svg#open_sanslight') format('svg');
+    font-weight: normal;
+    font-style: normal;
 }
 
 html, body, input, select, textarea {
@@ -19,6 +23,12 @@ html, body {
     height: 100%;
     width: 100%;
     background: #999;
+}
+
+body {
+    background-color: #f4f7f8;
+    background-image: url(Images/bdbg1.png);
+    background-repeat: repeat;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -33,8 +43,8 @@ a:hover {
     text-decoration: none;
 }
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
+/* Override the default bootstrap behavior where horizontal description lists
+   will truncate terms that are too long to fit in the left column
 */
 .dl-horizontal dt {
     white-space: normal;
@@ -47,47 +57,150 @@ textarea {
     max-width: 280px;
 }
 
-/* NAVIGATION */
-nav {
-    width: 175px;
-    display: block;
-    background: #333;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    transition: width ease .5s;
+ul {
+    list-style: inside;
 }
 
-    nav > ul {
+/* NAVIGATION */
+#menu-icon {
+    display: none;
+}
+
+@media only screen and (max-width: 959px) {
+    #menu-icon {
+        color: rgba(255, 255, 255, 0.7);
+        margin: 0 auto;
+        font-weight: 400;
+        border-radius: 2px;
+        clear: both;
+        text-align: left;
+        margin-top: 21px;
+        margin-right: 4px;
+        overflow: hidden;
+        z-index: 98;
         padding: 0;
-        margin: 0;
+        box-shadow: none;
+        float: right;
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+        position: absolute;
+        right: 0;
+        background: transparent;
+        cursor: pointer;
+        display: block;
+    }
+}
+
+#nav-wrap {
+    padding-top: 15px;
+}
+
+    #nav-wrap .container {
+        position: relative;
     }
 
-        nav > ul > li {
-            background: #666;
-            border-bottom: 1px solid #333;
-            font-size: 1.5rem;
-        }
+.nav-wrap1 .containter {
+    width: auto;
+}
 
-            nav > ul > li:hover {
-                background: #c0c0c0;
-            }
+#nav li {
+    list-style: none;
+    padding: 0 12px;
+    margin: 0;
+    float: left;
+    display: block;
+    height: 100%;
+    vertical-align: middle;
+}
 
-            nav > ul > li > a {
-                color: #FFF;
-                display: block;
-                padding: 0.8em;
-            }
+@media screen and (min-width: 1200px) {
+    #nav li, #header.sticky, #nav-wrap #nav > li {
+        list-style: none;
+        padding: 0 21px;
+    }
+}
 
+@media screen and (min-width: 959px) {
+    #nav {
+        display: block !important;
+    }
+}
 
+#nav a {
+    display: block;
+    font-size: 13px;
+    font-weight: 400;
+    padding: 0;
+    line-height: 30px;
+    color: #485059;
+    outline: 0;
+    -ms-opacity: 1;
+    opacity: 1;
+    text-align: center;
+    -webkit-transition: all .15s ease-in-out;
+    -moz-transition: all .15s ease-in-out;
+    -ms-transition: all .15s ease-in-out;
+    -o-transition: all .15s ease-in-out;
+    transition: all .15s ease-in-out;
+}
+
+#nav > li > a {
+    margin: 18px 0 26px;
+    font-size: 18px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+#nav a:hover, #nav li:hover > a, #nav li.current > a, #nav li.active > a {
+    color: #0ab1f0;
+    background: transparent;
+}
+
+#nav > li.current > a, #nav > li.active > a {
+    position: relative;
+}
+
+@media only screen and (min-width: 960px) {
+    #nav > li > a {
+        color: #000;
+        text-shadow: 1px 1px 0 #ffffff, 0 0 3px #fff;
+        text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.25), 0 0 3px #fff;
+    }
+}
 
 /* HEADER */
 header {
-    height: 70px;
+    z-index: 10000;
     width: 100%;
+    background: #fff;
+    padding: 30px 0;
 }
 
+@media only screen and (min-width: 960px) {
+    header {
+        background: none;
+        border: none;
+    }
+
+        header.homepage {
+            position: absolute;
+            top: 0;
+        }
+}
+
+header > .container > .logo {
+    height: auto;
+    float: left;
+}
+
+    header > .container > .logo img {
+        max-width: 100%;
+        max-height: 100%;
+        margin-top: 5px;
+    }
+
+.transparent-header-w #header .img-logo-w1, .transparent-header-w #header .img-logo-w3
 /* FOOTER */
 footer {
     display: block;
@@ -100,6 +213,33 @@ footer {
     padding: 0.3em 0 0 0.4em;
 }
 
+/* Container */
+/*.container {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+    .container:before, .container:after {
+        content: " ";
+        display: table;
+    }
+
+@media only screen and (min-width: 1200px) {
+    .container {
+        width: 1130px;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
+
+@media only screen and (min-width: 959px) {
+    .container {
+        width: 960px;
+    }
+}*/
+
 /* Wedding */
 .wedding-intro {
     display: inline-block;
@@ -111,3 +251,100 @@ footer {
     background-size: cover;
     padding-left: 15px;
 }
+
+.fullscreen-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+
+    .fullscreen-image#now-larimar-image {
+        background-image: url(Images/Now-Larimar-Pool-002.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+    .fullscreen-image .fullscreen-image-text {
+        width: 100%;
+        text-align: center;
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #FFF;
+    }
+
+    .fullscreen-image#now-larimar-image .fullscreen-image-text h3 {
+        font-size: 5rem;
+    }
+
+    .fullscreen-image#now-larimar-image .fullscreen-image-text h1 {
+        font-size: 7rem;
+        font-weight: 800;
+        font-family: open_sansbold;
+    }
+
+    .fullscreen-image#now-larimar-image .fullscreen-image-text h4 {
+        font-size: 4.5rem;
+    }
+
+    .fullscreen-image#now-larimar-image .fullscreen-image-text a {
+        max-width: 200px;
+        background: transparent;
+        border: 4px solid #FFF;
+        font-size: 4.5rem;
+        font-weight: 600;
+        color: #FFF;
+    }
+
+        .fullscreen-image#now-larimar-image .fullscreen-image-text a:hover, .fullscreen-image#now-larimar-image .fullscreen-image-text a:active {
+            color: #333;
+            background: #FFF;
+        }
+
+.page-header {
+    padding-top: 140px;
+    min-height: 350px;
+    margin: 0;
+}
+
+    .page-header#rsvp-header {
+        background-image: url(Images/rsvp1.jpg);
+        background-size: cover;
+    }
+
+    .page-header .page-header-text {
+        max-width: 1000px;
+        margin: 0 auto;
+        color: #FFF;
+    }
+
+        .page-header .page-header-text h1 {
+            text-transform: uppercase;
+            font-size: 5rem;
+            font-weight: lighter;
+        }
+
+.page-content {
+    padding-left: 15px;
+    padding-right: 15px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.page-sub-header {
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: center;
+    padding-top: 25px;
+}
+
+    .page-sub-header h4 {
+        letter-spacing: 0.5em;
+        line-height: 2em;
+        color: #999;
+    }
