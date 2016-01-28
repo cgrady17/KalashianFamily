@@ -16,7 +16,7 @@ namespace KalashianFamily.Web
             bundles.Add(new ScriptBundle("~/Assets/jQueryVal").Include(
                         "~/Scripts/jquery.validate*"));
 
-            bundles.Add(new StyleBundle("~/Assets/CSS").Include(
+            bundles.Add(new StyleBundle("~/Content/CSS").Include(
                         "~/Content/bootstrap.css",
                         "~/Content/bootstrap-datepicker3.css",
                         "~/Content/site.css"));
