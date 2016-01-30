@@ -4,8 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Net.Mail;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using SendGrid;
 
 namespace KalashianFamily.Web.Controllers
 {
@@ -146,6 +148,23 @@ namespace KalashianFamily.Web.Controllers
             }
 
             return Json(new { status = 1 });
+        }
+
+        private async Task SendRsvpEmailAsync(Dictionary<string, string> recipients, RsvpViewModel model)
+        {
+            SendGridMessage message = new SendGridMessage
+            {
+                From = new MailAddress("nick-becky@kalashianfamily.com", "Nick & Becky"),
+                Subject = "RSVP Confirmation | Nick & Becky's Wedding"
+            };
+
+            message.AddTo(recipients.Select(x => string.Concat(x.Key, " <", x.Value, ">")));
+
+            string template = model.Attending ? "Hey {0},<br /><br />" : "";
+
+            SendGrid.Web transportWeb = new SendGrid.Web("APIKEY");
+
+            await transportWeb.DeliverAsync(message);
         }
     }
 }
