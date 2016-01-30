@@ -15,7 +15,7 @@ namespace KalashianFamily.Web.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            return View();
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpGet]
@@ -50,7 +50,16 @@ namespace KalashianFamily.Web.Controllers
                     return Json(new { status = 0, error = ex.Message });
                 }
 
-                foreach (RSVPAttendee dbAttendee in model.Attendees.Select(attendee => new RSVPAttendee
+                RSVPAttendee primeAttendee = new RSVPAttendee
+                {
+                    EmailAddress = model.EmailAddress,
+                    Name = model.Name,
+                    RSVP_ID = rsvp.ID
+                };
+
+                db.RSVPAttendees.Add(primeAttendee);
+
+                foreach (RSVPAttendee dbAttendee in model.Attendees.Where(attendee => attendee.EmailAddress != null).Select(attendee => new RSVPAttendee
                 {
                     EmailAddress = attendee.EmailAddress,
                     Name = attendee.Name,
@@ -84,6 +93,18 @@ namespace KalashianFamily.Web.Controllers
 
         [HttpGet]
         public ActionResult TravelInfo()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult OurStory()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult Registries()
         {
             return View();
         }

@@ -156,8 +156,11 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\flipclock.css" />
+    <Content Include="Content\Images\14206.jpg" />
     <Content Include="Content\Images\bdbg1.png" />
     <Content Include="Content\Images\logo_blue.png" />
+    <Content Include="Content\Images\map-now-larimar.jpg" />
     <Content Include="Content\Images\Now-Larimar-Pool-002.jpg" />
     <Content Include="Content\Images\rsvp1.jpg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -185,8 +188,11 @@
     <Content Include="Scripts\bootstrap-datepicker.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\flipclock.js" />
     <Content Include="Scripts\jquery-2.2.0.js" />
     <Content Include="Scripts\jquery-2.2.0.min.js" />
+    <Content Include="Scripts\jquery.countdown.js" />
+    <Content Include="Scripts\jquery.dynamiclist.js" />
     <Content Include="Scripts\jquery.form.js" />
     <Content Include="Scripts\jquery.form.min.js" />
     <Content Include="Scripts\jquery.form.min.js.map" />
@@ -279,6 +285,11 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_Layout2.cshtml" />
     <Content Include="Views\Wedding\Rsvp.cshtml" />
+    <Content Include="Views\Wedding\Destination.cshtml" />
+    <Content Include="Views\Wedding\TravelInfo.cshtml" />
+    <Content Include="Views\Wedding\OurStory.cshtml" />
+    <Content Include="Views\Wedding\Registries.cshtml" />
+    <Content Include="Views\Wedding\GuestBook.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

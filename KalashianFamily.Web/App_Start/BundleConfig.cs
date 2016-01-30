@@ -9,6 +9,8 @@ namespace KalashianFamily.Web
             bundles.Add(new ScriptBundle("~/Assets/Scripts").Include(
                         "~/Scripts/jquery-{version}.js",
                         "~/Scripts/jquery.form.js",
+                        "~/Scripts/jquery.dynamiclist.js",
+                        "~/Scripts/flipclock.js",
                         "~/Scripts/bootstrap.js",
                         "~/Scripts/bootstrap-datepicker.js",
                         "~/Scripts/KalashianFamily.js"));
@@ -19,6 +21,7 @@ namespace KalashianFamily.Web
             bundles.Add(new StyleBundle("~/Content/CSS").Include(
                         "~/Content/bootstrap.css",
                         "~/Content/bootstrap-datepicker3.css",
+                        "~/Content/flipclock.css",
                         "~/Content/site.css"));
         }
     }

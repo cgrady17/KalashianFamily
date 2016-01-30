@@ -19,7 +19,7 @@ namespace KalashianFamily.Web.Models
 
         public bool Attending { get; set; }
 
-        public DateTime ArrivalDate { get; set; }
+        public DateTime? ArrivalDate { get; set; }
 
         [Required]
         [StringLength(75)]

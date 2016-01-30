@@ -16,16 +16,11 @@
                         <img src="@Url.Content("~/Content/Images/logo_blue.png")" width="275" id="img-logo-w1" alt="logo" class="img-logo-w1">
                     </a>
                 </div>
+                <div id="menu-icon">
+                    <span class="glyphicon glyphicon-menu-hamburger"></span>
+                </div>
             </div>
             <nav id="nav-wrap" class="nav-wrap1 col-md-9 col-sm-9">
-                <div id="menu-icon">
-                    <i class="fa-navicon"></i>
-                    <span>Menu - </span>
-                    <span class="mn-clk">Navigation</span>
-                    <span class="mn-ext1"></span>
-                    <span class="mn-ext2"></span>
-                    <span class="mn-ext3"></span>
-                </div>
                 <div class="container">
                     <ul id="nav">
                         <li>@Html.ActionLink("RSVP", "RSVP", "Wedding")</li>
@@ -43,6 +38,28 @@
     <div>
         @RenderBody()
     </div>
+
+    @if (ViewBag.IsHome != true)
+    {
+        <footer>
+            <div class="row">
+                <div class="col-lg-2">
+                </div>
+                <div class="col-lg-5">
+                    <h2>
+                        Rebecca Schicker <span class="glyphicon glyphicon-heart"></span> Nicholas Kalashian
+                    </h2>
+                    <h3>and we're getting married in</h3>
+                    <div id="wedding-clock"></div>
+                </div>
+                <div class="col-lg-4">
+                    <a href="@Url.Action("Index", "Home")" id="footer-logo"></a>
+                    <p>Copyright &copy; 2015@(DateTime.Now.Year > 2016 ? " - " + DateTime.Now.Year : "") @Html.ActionLink("KalashianFamily.com", "Index", "Home"). All Rights Reserved.</p>
+                    <p>Designed, Developed, and Hosted by Connor Grady.</p>
+                </div>
+            </div>
+        </footer>
+    }
     @Scripts.Render("~/Assets/Scripts")
     @RenderSection("FooterScripts", required: false)
 </body>

@@ -21,7 +21,7 @@ namespace KalashianFamily.Web.ViewModels
 
         [Display(Name = "What's your estimated date of arrival?")]
         [Required]
-        public DateTime ArrivalDate { get; set; }
+        public DateTime? ArrivalDate { get; set; }
 
         [Display(Name = "What's an Email Address at which we can contact you?")]
         [EmailAddress]
