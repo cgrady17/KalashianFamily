@@ -29,6 +29,11 @@
                     @Html.LabelFor(m => m.EmailAddress, new { @class = "control-label" })
                     @Html.TextBoxFor(m => m.EmailAddress, new { @class = "form-control", @placeholder = "Email Address" })
                     @Html.ValidationMessageFor(m => m.EmailAddress, null, new { @class = "text-danger" })
+
+                    <div class="alert alert-dismissable alert-info" style="margin-top: 20px;" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <strong>Don't worry!</strong> We'll keep your information completely private and only use it for wedding-related communications.
+                    </div>
                 </div>
             </div>
             <div class="row">
@@ -83,6 +88,11 @@
 
             <div class="form-group" style="text-align: center; display: none;">
                 <button type="submit" class="btn btn-success btn-lg">Submit</button>
+            </div>
+
+            <div class="alert alert-dismissable alert-success" role="alert" style="margin-top: 30px;">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <strong>You're safe!</strong> Your connection to KalashianFamily.com is completely secure and encrypted. Look for the <span class="glyphicon glyphicon-lock"></span> in your browser's address bar.
             </div>
         }
         <div class="spinner form-loader" style="display: none;">
