@@ -1,13 +1,15 @@
 ﻿using KalashianFamily.Web.Models;
 using KalashianFamily.Web.ViewModels;
+using SendGrid;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net.Mail;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using SendGrid;
 
 namespace KalashianFamily.Web.Controllers
 {
@@ -82,6 +84,8 @@ namespace KalashianFamily.Web.Controllers
 
                     return Json(new { status = 0, error = ex.Message });
                 }
+
+                await SendRsvpEmailAsync(model);
             }
 
             return Json(new { status = 1 });
@@ -150,21 +154,46 @@ namespace KalashianFamily.Web.Controllers
             return Json(new { status = 1 });
         }
 
-        private async Task SendRsvpEmailAsync(Dictionary<string, string> recipients, RsvpViewModel model)
+        //public async Task<ActionResult> TestEmail()
+        //{
+        //    RsvpViewModel model = new RsvpViewModel { EmailAddress = "cgrady17@outlook.com", Name = "Connor Grady", Attending = false, ArrivalDate = new DateTime(2016, 11, 11), OtherAttendees = false, Attendees = new List<RsvpAttendeeViewModel> { new RsvpAttendeeViewModel { Name = "Robin Grady", EmailAddress = "rgrady611@gmail.com" } } };
+        //    Dictionary<string, string> recipients = new Dictionary<string, string>
+        //    {
+        //        {"Connor Grady", "cgrady17@outlook.com"}
+        //    };
+
+        //    await SendRsvpEmailAsync(recipients, model);
+
+        //    return RedirectToAction("Index", "Home");
+        //}
+
+        private async Task SendRsvpEmailAsync(RsvpViewModel model)
         {
             SendGridMessage message = new SendGridMessage
             {
-                From = new MailAddress("nick-becky@kalashianfamily.com", "Nick & Becky"),
-                Subject = "RSVP Confirmation | Nick & Becky's Wedding"
+                From = new MailAddress("becky-nick@kalashianfamily.com", "Becky & Nick"),
+                Subject = "RSVP Confirmation | Becky & Nick's Wedding",
+                Html = RenderRazorViewToString("RSVPEmail", model),
             };
 
-            message.AddTo(recipients.Select(x => string.Concat(x.Key, " <", x.Value, ">")));
+            message.AddTo($"{model.Name} <{model.EmailAddress}>");
 
-            string template = model.Attending ? "Hey {0},<br /><br />" : "";
-
-            SendGrid.Web transportWeb = new SendGrid.Web("APIKEY");
+            SendGrid.Web transportWeb = new SendGrid.Web(ConfigurationManager.AppSettings["sendgrid:APIKey"]);
 
             await transportWeb.DeliverAsync(message);
+        }
+
+        private string RenderRazorViewToString(string viewName, object model)
+        {
+            ViewData.Model = model;
+            using (StringWriter sw = new StringWriter())
+            {
+                ViewEngineResult viewResult = ViewEngines.Engines.FindPartialView(ControllerContext, viewName);
+                ViewContext viewContext = new ViewContext(ControllerContext, viewResult.View, ViewData, TempData, sw);
+                viewResult.View.Render(viewContext, sw);
+                viewResult.ViewEngine.ReleaseView(ControllerContext, viewResult.View);
+                return sw.GetStringBuilder().ToString();
+            }
         }
     }
 }
