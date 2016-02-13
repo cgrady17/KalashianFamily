@@ -7,9 +7,12 @@ using System.Configuration;
 using System.Data.Entity;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Net.Mail;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using Grady.Framework.Mvc;
+using Microsoft.Ajax.Utilities;
 
 namespace KalashianFamily.Web.Controllers
 {
@@ -31,6 +34,11 @@ namespace KalashianFamily.Web.Controllers
         [HttpPost, ValidateAntiForgeryToken]
         public async Task<ActionResult> Rsvp(RsvpViewModel model)
         {
+            if (!string.IsNullOrWhiteSpace(model.Website) || model.CaptchaPass == null || model.CaptchaPass != "KALASHIAN_NOT_ROBOT")
+            {
+                return Json(new { status = 0, error = "Only humans can submit this form." });
+            }
+
             using (NickBeckyWedding db = new NickBeckyWedding())
             using (DbContextTransaction dbTrans = db.Database.BeginTransaction())
             {
@@ -173,7 +181,7 @@ namespace KalashianFamily.Web.Controllers
             {
                 From = new MailAddress("becky-nick@kalashianfamily.com", "Becky & Nick"),
                 Subject = "RSVP Confirmation | Becky & Nick's Wedding",
-                Html = RenderRazorViewToString("RSVPEmail", model),
+                Html = this.RenderPartialViewToString("RSVPEmail", model)
             };
 
             message.AddTo($"{model.Name} <{model.EmailAddress}>");
@@ -183,17 +191,34 @@ namespace KalashianFamily.Web.Controllers
             await transportWeb.DeliverAsync(message);
         }
 
-        private string RenderRazorViewToString(string viewName, object model)
-        {
-            ViewData.Model = model;
-            using (StringWriter sw = new StringWriter())
-            {
-                ViewEngineResult viewResult = ViewEngines.Engines.FindPartialView(ControllerContext, viewName);
-                ViewContext viewContext = new ViewContext(ControllerContext, viewResult.View, ViewData, TempData, sw);
-                viewResult.View.Render(viewContext, sw);
-                viewResult.ViewEngine.ReleaseView(ControllerContext, viewResult.View);
-                return sw.GetStringBuilder().ToString();
-            }
-        }
+        //private static async Task<bool> VerifyReCaptcha(string response, string ipAddr)
+        //{
+        //    using (HttpClient client = new HttpClient())
+        //    using (MultipartFormDataContent formData = new MultipartFormDataContent())
+        //    {
+        //        Uri uri = new Uri("https://www.google.com/recaptcha/api/siteverify");
+
+        //        formData.Add(new StringContent("6LfSLRgTAAAAAF_zbdu93EVUV1cHuZ_XV09JOzc0"), "secret");
+        //        formData.Add(new StringContent(response), "response");
+        //        formData.Add(new StringContent(ipAddr), "remoteip");
+
+        //        HttpResponseMessage result = await client.PostAsync(uri, formData);
+
+        //        if (!result.IsSuccessStatusCode) return false;
+        //    }
+        //}
+
+        //private string RenderRazorViewToString(string viewName, object model)
+        //{
+        //    ViewData.Model = model;
+        //    using (StringWriter sw = new StringWriter())
+        //    {
+        //        ViewEngineResult viewResult = ViewEngines.Engines.FindPartialView(ControllerContext, viewName);
+        //        ViewContext viewContext = new ViewContext(ControllerContext, viewResult.View, ViewData, TempData, sw);
+        //        viewResult.View.Render(viewContext, sw);
+        //        viewResult.ViewEngine.ReleaseView(ControllerContext, viewResult.View);
+        //        return sw.GetStringBuilder().ToString();
+        //    }
+        //}
     }
 }

@@ -85,6 +85,9 @@
                     <a href="#" class="list-add btn btn-success">Add Attendee</a>
                 </div>
             </div>
+            <div class="form-group" style="text-align: center; display: none;">
+                <div class="g-recaptcha" data-sitekey="6LfSLRgTAAAAAIxJiul27XKjlp31-I31NkckKmyU" data-callback="kalashian.rsvpReCaptchaCallback(response)"></div>
+            </div>
 
             <div class="form-group" style="text-align: center; display: none;">
                 <button type="submit" class="btn btn-success btn-lg">Submit</button>
@@ -94,6 +97,9 @@
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <strong>You're safe!</strong> Your connection to KalashianFamily.com is completely secure and encrypted. Look for the <span class="glyphicon glyphicon-lock"></span> in your browser's address bar.
             </div>
+
+            @Html.HiddenFor(m => m.Website)
+            @Html.HiddenFor(m => m.CaptchaPass)
         }
         <div class="spinner form-loader" style="display: none;">
             <div class="rect1"></div>

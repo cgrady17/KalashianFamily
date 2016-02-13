@@ -434,7 +434,7 @@
                 <tr>
                     <td style="padding: 0;" width="600">
                         <div class="header__logo emb-logo-margin-box" style="font-size: 26px;line-height: 32px;Margin-top: 6px;Margin-bottom: 20px;color: #c3ced9;font-family: Roboto,Tahoma,sans-serif;">
-                            <div class="logo-center" style="font-size:0px !important;line-height:0 !important;" align="center" id="emb-email-header"><a href="@Url.Action("Index", "Home")" target="_blank"><img style="height: auto;width: 100%;border: 0;max-width: 242px;" src="https://kalashianfamily.com/Content/Images/logo_blue.png" alt="" width="242" height="83" /></a></div>
+                            <div class="logo-center" style="font-size:0px !important;line-height:0 !important;" align="center" id="emb-email-header"><a href="@Url.Action("Index", "Home", null, "https")" target="_blank"><img style="height: auto;width: 100%;border: 0;max-width: 242px;" src="https://kalashianfamily.com/Content/Images/logo_blue.png" alt="" width="242" height="83" /></a></div>
                         </div>
                     </td>
                 </tr>
@@ -501,12 +501,15 @@
                             </p>
                         </div>
 
-                        <div style="Margin-left: 20px;Margin-right: 20px;">
-                            <div class="btn btn--flat" style="Margin-bottom: 20px;text-align: center;">
-                                <![if !mso]><a style="border-radius: 4px;display: inline-block;font-weight: bold;text-align: center;text-decoration: none !important;transition: opacity 0.1s ease-in;color: #fff;background-color: #0ab1f0;font-family: 'PT Serif', Georgia, serif;font-size: 14px;line-height: 24px;padding: 12px 35px;" href="https://kalashianfamily.com/" data-width="213">Visit KalashianFamily.com</a><![endif]>
-                                <!--[if mso]><p style="line-height:0;margin:0;">&nbsp;</p><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" href="https://kalashianfamily.com/" style="width:283px" arcsize="9%" fillcolor="#0AB1F0" stroke="f"><v:textbox style="mso-fit-shape-to-text:t" inset="0px,11px,0px,11px"><center style="font-size:14px;line-height:24px;color:#FFFFFF;font-family:Georgia,serif;font-weight:bold;mso-line-height-rule:exactly;mso-text-raise:4px">Visit KalashianFamily.com</center></v:textbox></v:roundrect><![endif]-->
+                        @if (Model.Attending)
+                        {
+                            <div style="Margin-left: 20px; Margin-right: 20px;">
+                                <div class="btn btn--flat" style="Margin-bottom: 20px; text-align: center;">
+                                    <![if !mso]><a style="border-radius: 4px; display: inline-block; font-weight: bold; text-align: center; text-decoration: none !important; transition: opacity 0.1s ease-in; color: #fff; background-color: #0ab1f0; font-family: 'PT Serif', Georgia, serif; font-size: 14px; line-height: 24px; padding: 12px 35px;" href="https://kalashianfamily.com/" data-width="213">Visit KalashianFamily.com</a><![endif]>
+                                    <!--[if mso]><p style="line-height: 0; margin: 0;">&nbsp;</p><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" href="https://kalashianfamily.com/" style="width: 283px" arcsize="9%" fillcolor="#0AB1F0" stroke="f"><v:textbox style="mso-fit-shape-to-text: t" inset="0px,11px,0px,11px"><center style="font-size: 14px; line-height: 24px; color: #FFFFFF; font-family: Georgia, serif; font-weight: bold; mso-line-height-rule: exactly; mso-text-raise: 4px">Visit KalashianFamily.com</center></v:textbox></v:roundrect><![endif]-->
+                                </div>
                             </div>
-                        </div>
+                        }
 
                         <div style="Margin-left: 20px;Margin-right: 20px;Margin-bottom: 24px;">
                             <p style="Margin-top: 0;Margin-bottom: 0;">Thanks,</p><p style="Margin-top: 20px;Margin-bottom: 0;">
@@ -535,11 +538,11 @@
                                                 <strong>Wedding Information</strong>
                                             </h2>
                                             <ul style="Margin-top: 16px; Margin-bottom: 0; Margin-left: 24px; padding: 0;">
-                                                <li style="Margin-top: 16px; Margin-bottom: 0;"><a href="@Url.Action("TravelInfo", "Wedding")" target="_blank">Booking &amp; Travel</a></li>
-                                                <li style="Margin-top: 0; Margin-bottom: 0;"><a href="@Url.Action("Destination", "Wedding")" target="_blank">Now Larimar Resort</a></li>
-                                                <li style="Margin-top: 0; Margin-bottom: 0;"><a href="@Url.Action("OurStory", "Wedding")" target="_blank">Our Story</a></li>
-                                                <li style="Margin-top: 0; Margin-bottom: 0;"><a href="@Url.Action("Registries", "Wedding")" target="_blank">Registries</a></li>
-                                                <li style="Margin-top: 0; Margin-bottom: 0;"><a href="@Url.Action("GuestBook", "Wedding")" target="_blank">Guest Book</a></li>
+                                                <li style="Margin-top: 16px; Margin-bottom: 0;"><a href="@Url.Action("TravelInfo", "Wedding", null, "https")" target="_blank">Booking &amp; Travel</a></li>
+                                                <li style="Margin-top: 0; Margin-bottom: 0;"><a href="@Url.Action("Destination", "Wedding", null, "https")" target="_blank">Now Larimar Resort</a></li>
+                                                <li style="Margin-top: 0; Margin-bottom: 0;"><a href="@Url.Action("OurStory", "Wedding", null, "https")" target="_blank">Our Story</a></li>
+                                                <li style="Margin-top: 0; Margin-bottom: 0;"><a href="@Url.Action("Registries", "Wedding", null, "https")" target="_blank">Registries</a></li>
+                                                <li style="Margin-top: 0; Margin-bottom: 0;"><a href="@Url.Action("GuestBook", "Wedding", null, "https")" target="_blank">Guest Book</a></li>
                                             </ul>
                                         </div>
                                     </td>
@@ -555,7 +558,7 @@
                                     <td style='color: #7c7e7f;font-family: "Open Sans",sans-serif;padding: 0;'>
 
                                         <div class="image" style="margin-left: 20px; margin-right: 20px; margin-top: 24px;" align="left">
-                                            <a href="@Url.Action("Index", "Home")" target="_blank"><img class="gnd-corner-image gnd-corner-image-center gnd-corner-image-top" style="display: block;border: 0;max-width: 350px;" src="https://kalashianfamily.com/Content/Images/logo_blue.png" alt="" width="146" height="50" /></a>
+                                            <a href="@Url.Action("Index", "Home", null, "https")" target="_blank"><img class="gnd-corner-image gnd-corner-image-center gnd-corner-image-top" style="display: block;border: 0;max-width: 350px;" src="https://kalashianfamily.com/Content/Images/logo_blue.png" alt="" width="146" height="50" /></a>
                                         </div>
 
                                         <div style="Margin-left: 20px;Margin-right: 20px;Margin-top: 20px;Margin-bottom: 24px;">

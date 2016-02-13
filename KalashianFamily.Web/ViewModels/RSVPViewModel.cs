@@ -34,6 +34,11 @@ namespace KalashianFamily.Web.ViewModels
         [StringLength(150, MinimumLength = 5)]
         public string Name { get; set; }
 
-        public List<RsvpAttendeeViewModel> Attendees { get; set; } 
+        public List<RsvpAttendeeViewModel> Attendees { get; set; }
+
+        #region Anti-Bot
+        public string Website { get; set; }
+        public string CaptchaPass { get; set; }
+        #endregion
     }
 }

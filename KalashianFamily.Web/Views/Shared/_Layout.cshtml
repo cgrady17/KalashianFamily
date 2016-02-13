@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title | The Kalashian Family</title>
     @Styles.Render("~/Content/CSS")
+    @RenderSection("HeaderScripts", false)
 </head>
 <body>
     <header class="horizontal-w sm-rgt-mn @(ViewBag.IsHome == true ? "homepage" : "")">

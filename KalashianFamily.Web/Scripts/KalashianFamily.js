@@ -43,6 +43,7 @@
         } else {
             $("#attendee-list").hide(400);
         }
+
         $("button[type=submit]").parent().show(400);
     });
 
@@ -59,6 +60,9 @@
         startDate: new Date(2016, 10, 1),
         endDate: new Date(2016, 10, 21)
     });
+
+    if ($("input[name='Name']").length) $("input[name='Name']").focus();
+    if ($("input[name='CaptchaPass']").length) $("input[name='CaptchaPass']").val("KALASHIAN_NOT_ROBOT");
 
     /**
      * Performs operations immediately before the submission of the RSVP form.
@@ -124,3 +128,7 @@
 
     //// WEDDING [END] ////
 });
+
+(function(kalashian) {
+    
+})(window.kalashian || (window.kalashian = {}));
