@@ -1,18 +1,15 @@
-﻿using KalashianFamily.Web.Models;
+﻿using Grady.Framework.Mvc;
+using KalashianFamily.Web.Models;
 using KalashianFamily.Web.ViewModels;
 using SendGrid;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.Entity;
-using System.IO;
 using System.Linq;
-using System.Net.Http;
 using System.Net.Mail;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using Grady.Framework.Mvc;
-using Microsoft.Ajax.Utilities;
 
 namespace KalashianFamily.Web.Controllers
 {

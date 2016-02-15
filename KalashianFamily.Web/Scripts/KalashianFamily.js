@@ -107,6 +107,14 @@
         }
     };
 
+    var rsvpError = function(xhr, textStatus, errorThrown) {
+        $(".form-loader").hide(400);
+        var outputDiv = $("#rsvp-form-output");
+        var name = $("input[name='Name']").val();
+        outputDiv.addClass("alert alert-danger");
+        outputDiv.html("<h3><strong>Error!</strong> Sorry " + name + ", it looks like we ran into some trouble recording your RSVP. Please try again later. Here's the error message: " + textStatus + "</h3>");
+    };
+
     /**
      * Prepares the RSVP form for AJAX-based submission.
      */
@@ -114,6 +122,7 @@
         target: "#rsvp-form-output",
         beforeSubmit: rsvpBeforeSubmit,
         success: rsvpSuccess,
+        error: rsvpError,
         dataType: "json"
     });
 
