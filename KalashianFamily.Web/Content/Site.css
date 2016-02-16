@@ -278,7 +278,7 @@ header {
         }
 
 /* FOOTER */
-footer {
+footer#footer {
     width: 100%;
     min-height: 400px;
     background: #666;
@@ -287,15 +287,15 @@ footer {
     margin-top: 30px;
 }
 
-    footer a {
+    footer#footer a {
         color: #0ab1f0;
     }
 
-    footer > .row {
+    footer#footer > .row {
         padding-top: 30px;
     }
 
-    footer #footer-logo {
+    footer#footer #footer-logo {
         display: inline-block;
         background-image: url(Images/logo_blue.png);
         background-repeat: no-repeat;
@@ -304,13 +304,13 @@ footer {
         width: 200px;
     }
 
-    footer h2 {
+    footer#footer h2 {
         color: #FFF;
         text-transform: uppercase;
         font-size: 3rem;
     }
 
-    footer h3 {
+    footer#footer h3 {
         text-align: center;
     }
 
@@ -354,7 +354,7 @@ footer {
     }
 }
 
-footer h2 .glyphicon-heart {
+footer#footer h2 .glyphicon-heart {
     color: #0ab1f0;
     -webkit-animation: heart_pulse 2s infinite linear;
     -moz-animation: heart_pulse 2s infinite linear;
@@ -412,6 +412,48 @@ footer h2 .glyphicon-heart {
     margin-top: 15px;
 }
 
+#ourstory-content .row {
+    margin-bottom: 2em;
+    display: flex;
+    align-items: center;
+    font-size: 1.2em;
+}
+
+/* Extra small devices (767px and down) */
+@media (max-width: 767px) { 
+    #ourstory-content .row {
+        display: block; /* turn off the flexible box layout */
+    }
+}
+
+#ourstory-content .row img {
+    width: 100%;
+}
+
+#ourstory-content .centered-text {
+    text-align: center;
+}
+
+#ourstory-content .centered-text blockquote {
+    text-align: left;
+    display: inline-block;
+}
+
+#ourstory-content .centered-text blockquote.blockquote-reverse {
+    text-align: right;
+    display: inline-block;
+}
+
+/*#ourstory-content .row .text-col {
+    position: relative;
+    top: 50%;
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+}*/
+
 .fullscreen-image {
     position: absolute;
     top: 0;
@@ -435,14 +477,18 @@ footer h2 .glyphicon-heart {
         background-size: cover;
     }
 
-    .fullscreen-image .fullscreen-image-text {
-        width: 100%;
-        text-align: center;
-        position: relative;
-        top: 50%;
-        transform: translateY(-50%);
-        color: #FFF;
-    }
+.fullscreen-image .fullscreen-image-text {
+    width: 100%;
+    text-align: center;
+    position: relative;
+    top: 50%;
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    color: #FFF;
+}
 
     .fullscreen-image#now-larimar-image .fullscreen-image-text h3 {
         font-size: 5rem;
@@ -492,6 +538,12 @@ footer h2 .glyphicon-heart {
 
     .page-header#travelinfo-header {
         background-image: url(Images/map-now-larimar.jpg);
+        background-size: cover;
+        background-position: 0 50%;
+    }
+
+    .page-header#ourstory-header {
+        background-image: url(Images/book_heart.jpg);
         background-size: cover;
         background-position: 0 50%;
     }

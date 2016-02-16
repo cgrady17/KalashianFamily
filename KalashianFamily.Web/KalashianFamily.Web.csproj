@@ -184,10 +184,15 @@
     <Content Include="Content\flipclock.css" />
     <Content Include="Content\Images\14206.jpg" />
     <Content Include="Content\Images\bdbg1.png" />
+    <Content Include="Content\Images\book_heart.jpg" />
     <Content Include="Content\Images\logo_blue.png" />
     <Content Include="Content\Images\map-now-larimar.jpg" />
     <Content Include="Content\Images\Now-Larimar-Pool-002.jpg" />
     <Content Include="Content\Images\rsvp1.jpg" />
+    <Content Include="Content\Images\Wedding\ace_proposal.jpg" />
+    <Content Include="Content\Images\Wedding\nick_becky_1.jpg" />
+    <Content Include="Content\Images\Wedding\nick_becky_2.jpg" />
+    <Content Include="Content\Images\Wedding\nick_becky_beach.jpg" />
     <Content Include="Content\Images\Wedding\travel-agent-card.jpg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\OpenSans\Bold\OpenSans-Bold-webfont.svg" />
