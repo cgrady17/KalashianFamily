@@ -128,6 +128,76 @@
 
     $("#attendee-list").dynamiclist();
 
+    /**
+     * Performs operations immediately before the submission of the Guest Book form.
+     * @param {} formData
+     * @param {} jqForm
+     * @param {} options
+     * @returns {}
+     */
+    var guestBookBeforeSubmit = function (formData, jqForm, options) {
+        jqForm.hide(400);
+        $(".form-loader").show(400);
+    };
+
+    /**
+     * Performs operations on a successful submission of the Guest Book form.
+     * @param {} responseText
+     * @param {} statusText
+     * @param {} xhr
+     * @param {} $form
+     * @returns {}
+     */
+    var guestBookSuccess = function (responseText, statusText, xhr, $form) {
+        $(".form-loader").hide(400);
+        var outputDiv = $("#guestbook-form-output");
+        var name = $("input[name='Name']").val();
+        if (responseText.status === 0) {
+            // Error
+            outputDiv.addClass("alert alert-danger");
+            outputDiv.html("<h3><strong>Error!</strong> Sorry " + name + ", it looks like we ran into some trouble signing the Book. Here's the error message: " + responseText.error + "</h3>");
+        } else {
+            // Success
+            outputDiv.addClass("alert alert-success");
+            outputDiv.html("<h3><strong>Thanks " + name + "!</strong> We've successfully signed the Book with your message.</h3>");
+        }
+    };
+
+    var guestBookError = function (xhr, textStatus, errorThrown) {
+        $(".form-loader").hide(400);
+        var outputDiv = $("#guestbook-form-output");
+        var name = $("input[name='Name']").val();
+        outputDiv.addClass("alert alert-danger");
+        outputDiv.html("<h3><strong>Error!</strong> Sorry " + name + ", it looks like we ran into some trouble signing the Book. Please try again later. Here's the error message: " + textStatus + "</h3>");
+    };
+
+    /**
+     * Prepares the RSVP form for AJAX-based submission.
+     */
+    $("#guestbook-form form").ajaxForm({
+        target: "#guestbook-form-output",
+        beforeSubmit: guestBookBeforeSubmit,
+        success: guestBookSuccess,
+        error: guestBookError,
+        dataType: "json"
+    });
+
+    $("#guestbook-form form #Name, #guestbook-form form #Message").keyup(function() {
+        var inputs = $("#guestbook-form form #Name, #guestbook-form form #Message");
+        var allValid = true;
+        inputs.each(function() {
+            if (!$(this).val() || !$(this).val().length) {
+                allValid = false;
+            }
+        });
+
+        if (!allValid) {
+            $("#guestbook-form form button[type=submit]").parent().hide(400);
+        } else {
+            $("#guestbook-form form button[type=submit]").parent().show(400);
+        }
+    });
+
     var weddingDate = new Date(2016, 10, 11, 14);
 
     var weddingClock = $("#wedding-clock").FlipClock(Math.abs((new Date().getTime() - weddingDate.getTime()) / 1000), {

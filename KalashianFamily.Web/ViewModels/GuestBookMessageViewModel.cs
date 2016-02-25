@@ -13,5 +13,10 @@ namespace KalashianFamily.Web.ViewModels
         [Required]
         [StringLength(500, MinimumLength = 5)]
         public string Message { get; set; }
+
+        #region Anti-Bot
+        public string Website { get; set; }
+        public string CaptchaPass { get; set; }
+        #endregion
     }
 }

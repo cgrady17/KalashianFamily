@@ -115,12 +115,6 @@ namespace KalashianFamily.Web.Controllers
         }
 
         [HttpGet]
-        public ActionResult Registries()
-        {
-            return View();
-        }
-
-        [HttpGet]
         public async Task<ActionResult> GuestBook()
         {
             using (NickBeckyWedding db = new NickBeckyWedding())
@@ -128,13 +122,20 @@ namespace KalashianFamily.Web.Controllers
                 IReadOnlyList<GuestBookMessage> messages =
                     await db.GuestBookMessages.OrderByDescending(msg => msg.SignedDate).ToListAsync();
 
-                return View(messages);
+                ViewBag.Messages = messages;
+
+                return View();
             }
         }
 
         [HttpPost, ValidateAntiForgeryToken]
         public async Task<ActionResult> GuestBook(GuestBookMessageViewModel model)
         {
+            if (!string.IsNullOrWhiteSpace(model.Website) || model.CaptchaPass == null || model.CaptchaPass != "KALASHIAN_NOT_ROBOT")
+            {
+                return Json(new { status = 0, error = "Only humans can submit this form." });
+            }
+
             using (NickBeckyWedding db = new NickBeckyWedding())
             {
                 GuestBookMessage guestBook = new GuestBookMessage

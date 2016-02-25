@@ -454,6 +454,25 @@ footer#footer h2 .glyphicon-heart {
     transform: translateY(-50%);
 }*/
 
+/* GUEST BOOK */
+.guestbook-message:not(:first-of-type) {
+    border-top: 1px solid #333;
+}
+
+.guestbook-message .guestbook-message-date {
+    float: right;
+}
+
+.guestbook-message .guestbook-message-name {
+    float: left;
+    font-size: 1.8em;
+}
+
+.guestbook-message .guestbook-message-text {
+    clear: both;
+}
+/* END GUEST BOOK */
+
 .fullscreen-image {
     position: absolute;
     top: 0;
@@ -548,13 +567,19 @@ footer#footer h2 .glyphicon-heart {
         background-position: 0 50%;
     }
 
+    .page-header#guestbook-header {
+        background-image: url(Images/guestbook-page-ed.jpg);
+        background-size: cover;
+        background-position: 0 20%;
+    }
+
     .page-header .page-header-text {
         max-width: 1000px;
         margin: 0 auto;
         color: #FFF;
     }
 
-        .page-header#travelinfo-header .page-header-text {
+        .page-header#travelinfo-header .page-header-text, .page-header#guestbook-header .page-header-text {
             color: #333;
         }
 
