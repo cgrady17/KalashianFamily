@@ -7,8 +7,6 @@
     <title>@ViewBag.Title | The Kalashian Family</title>
     @Styles.Render("~/Content/CSS")
     @RenderSection("HeaderScripts", false)
-</head>
-<body>
     <script>
         (function (i, s, o, g, r, a, m) {
             i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
@@ -20,6 +18,8 @@
         ga('create', 'UA-8546022-16', 'auto');
         ga('send', 'pageview');
     </script>
+</head>
+<body>
     <header class="horizontal-w sm-rgt-mn @(ViewBag.IsHome == true ? "homepage" : "")">
         <div class="container">
             <div class="col-md-3 col-sm-3 logo-wrap">
