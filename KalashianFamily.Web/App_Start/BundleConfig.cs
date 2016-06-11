@@ -23,6 +23,17 @@ namespace KalashianFamily.Web
                         "~/Content/bootstrap-datepicker3.css",
                         "~/Content/flipclock.css",
                         "~/Content/site.css"));
+
+            bundles.Add(new StyleBundle("~/Content/EJ").Include(
+                        "~/Content/EJ/web/ej.widgets.core.min.css",
+                        //"~/Content/EJ/default-theme/ej.web.all.css",
+                        //"~/Content/EJ/default-theme/ej.widgets.all.css",
+                        "~/Content/EJ/web/default-theme/ej.theme.min.css"));
+
+            bundles.Add(new ScriptBundle("~/Scripts/EJ").Include(
+                        "~/Scripts/jquery.easing.1.3.js",
+                        "~/Scripts/jsrender.min.js",
+                        "~/Scripts/EJ/web/ej.web.all.min.js"));
         }
     }
 }

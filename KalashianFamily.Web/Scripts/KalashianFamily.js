@@ -128,6 +128,35 @@
 
     $("#attendee-list").dynamiclist();
 
+    var emailSuccess = function (responseText, statusText, xhr, $form) {
+        $(".form-loader").hide(400);
+        var outputDiv = $("#email-form-output");
+        if (responseText.status === 0) {
+            // Error
+            outputDiv.addClass("alert alert-danger");
+            outputDiv.html("<h3><strong>Error!</strong> Sorry, it looks like we ran into some trouble sending all of the emails. Here's the error message: " + responseText.error + "</h3>");
+        } else {
+            // Success
+            outputDiv.addClass("alert alert-success");
+            outputDiv.html("<h3><strongSuccess!</strong> " + responseText.message + "</h3>");
+        }
+    };
+
+    var emailError = function (xhr, textStatus, errorThrown) {
+        $(".form-loader").hide(400);
+        var outputDiv = $("#email-form-output");
+        outputDiv.addClass("alert alert-danger");
+        outputDiv.html("<h3><strong>Error!</strong> Sorry, it looks like we ran into some trouble sending all of the emails. Please try again later. Here's the error message: " + textStatus + "</h3>");
+    };
+
+    $("#email-form").ajaxForm({
+        target: "#email-form-output",
+        beforeSubmit: rsvpBeforeSubmit,
+        success: emailSuccess,
+        error: emailError,
+        dataType: "json"
+    });
+
     /**
      * Performs operations immediately before the submission of the Guest Book form.
      * @param {} formData

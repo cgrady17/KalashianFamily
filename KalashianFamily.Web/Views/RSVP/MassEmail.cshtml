@@ -1,0 +1,79 @@
+﻿@model KalashianFamily.Web.ViewModels.CustomEmailViewModel
+@{
+    ViewBag.Title = "Mass Email";
+}
+@section HeaderScripts {
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.css" rel="stylesheet">
+}
+
+<div class="page-content">
+    <h1 class="page-title">Send Mass Email</h1>
+    <p>Use the form below to send a mass personalized email message to either everyone who RSVPed or only those who RSVPed as attending.</p>
+    <div id="email-form-container" class="form-container">
+        @using (Html.BeginForm(null, null, FormMethod.Post, new { @id = "email-form" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-group">
+                @Html.LabelFor(m => m.Subject, new { @class = "control-label" })
+                @Html.TextBoxFor(m => m.Subject, new { @class = "form-control" })
+            </div>
+
+            <div class="form-group">
+                <label for="Body" class="control-label">Message Body</label><br />
+                <span class="text-warning"><strong>Note!</strong> The email does not include a valediction by default. Therefore, insure you include a custom farewell at the end (e.g. "Thanks, Becky & Nick", etc.).</span>
+                <textarea id="Body" name="Body" class="form-control"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">To whom should the email(s) be sent?</label><br/>
+                <label class="radio-inline">
+                    <input type="radio" name="RecipientSelection" id="recipientSelection1" value="all"> All (<span id="total-recipients"></span>)
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="RecipientSelection" id="recipientSelection2" value="attending" checked="checked"> Only those attending (<span id="total-yes-recipients"></span>)
+                </label>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-success btn-lg">Send Email(s)</button>
+            </div>
+        }
+        <div class="spinner form-loader" style="display: none;">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
+        </div>
+        <div id="email-form-output">
+        </div>
+    </div>
+</div>
+
+@section FooterScripts
+{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.js"></script>
+    <script>
+        $(function() {
+            $("#Body").summernote({
+                height: 300,
+                focus: false
+            });
+
+            var getCode = $("#Body").summernote("code");
+
+            kalashian.massEmail = {};
+
+            $.get('@Url.Action("Read", new {id = 1})', function(data) {
+                kalashian.massEmail.totalRecipients = data;
+                $("#total-recipients").html(data);
+            });
+
+            $.get('@Url.Action("Read", new {id = 2})', function(data) {
+                kalashian.massEmail.totalYes = data;
+                $("#total-yes-recipients").html(data);
+            });
+        });
+    </script>
+}
