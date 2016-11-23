@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Web.Mvc;
 using System.Web.WebPages;
 using Microsoft.Ajax.Utilities;
+using SendGrid.Helpers.Mail;
 
 namespace KalashianFamily.Web.Controllers
 {
@@ -114,22 +115,27 @@ namespace KalashianFamily.Web.Controllers
         {
             string baseBody = this.RenderPartialViewToString("EmailShell", model);
 
-            SendGrid.Web transportWeb = new SendGrid.Web(ConfigurationManager.AppSettings["sendgrid:APIKey"]);
+            //SendGrid.Web transportWeb = new SendGrid.Web(ConfigurationManager.AppSettings["sendgrid:APIKey"]);
+            SendGridAPIClient sendGrid = new SendGridAPIClient(ConfigurationManager.AppSettings["sendgrid:APIKey"]);
 
             int count = 0;
 
             foreach (KeyValuePair<string, string> recipient in recipients)
             {
-                SendGridMessage message = new SendGridMessage
-                {
-                    From = new MailAddress("becky-nick@kalashianfamily.com", "Becky & Nick"),
-                    Subject = model.Subject,
-                    Html = baseBody.Replace("-recipientName-", recipient.Key)
-                };
+                //SendGridMessage message = new SendGridMessage
+                //{
+                //    From = new MailAddress("becky-nick@kalashianfamily.com", "Becky & Nick"),
+                //    Subject = model.Subject,
+                //    Html = baseBody.Replace("-recipientName-", recipient.Key)
+                //};
 
-                message.AddTo($"{recipient.Key} <{recipient.Value}>");
+                Mail mail = new Mail(new Email("becky-nick@kalashianfamily.com", "Nick & Rebecca"), model.Subject, new Email(recipient.Value, recipient.Key), new Content("text/html", baseBody.Replace("-recipientName-", recipient.Key)));
 
-                await transportWeb.DeliverAsync(message);
+                await sendGrid.client.mail.send.post(requestBody: mail.Get());
+
+                //message.AddTo($"{recipient.Key} <{recipient.Value}>");
+
+                //await transportWeb.DeliverAsync(message);
 
                 count++;
             }

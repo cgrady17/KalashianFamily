@@ -10,6 +10,7 @@ using System.Linq;
 using System.Net.Mail;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using SendGrid.Helpers.Mail;
 
 namespace KalashianFamily.Web.Controllers
 {
@@ -175,18 +176,23 @@ namespace KalashianFamily.Web.Controllers
 
         private async Task SendRsvpEmailAsync(RsvpViewModel model)
         {
-            SendGridMessage message = new SendGridMessage
-            {
-                From = new MailAddress("becky-nick@kalashianfamily.com", "Becky & Nick"),
-                Subject = "RSVP Confirmation | Becky & Nick's Wedding",
-                Html = this.RenderPartialViewToString("RSVPEmail", model)
-            };
+            //SendGridMessage message = new SendGridMessage
+            //{
+            //    From = new MailAddress("becky-nick@kalashianfamily.com", "Becky & Nick"),
+            //    Subject = "RSVP Confirmation | Becky & Nick's Wedding",
+            //    Html = this.RenderPartialViewToString("RSVPEmail", model)
+            //};
 
-            message.AddTo($"{model.Name} <{model.EmailAddress}>");
+            //message.AddTo($"{model.Name} <{model.EmailAddress}>");
 
-            SendGrid.Web transportWeb = new SendGrid.Web(ConfigurationManager.AppSettings["sendgrid:APIKey"]);
+            //SendGrid.Web transportWeb = new SendGrid.Web(ConfigurationManager.AppSettings["sendgrid:APIKey"]);
 
-            await transportWeb.DeliverAsync(message);
+            //await transportWeb.DeliverAsync(message);
+
+            SendGridAPIClient sendGrid = new SendGridAPIClient(ConfigurationManager.AppSettings["sendgrid:APIKey"]);
+            Mail mail = new Mail(new Email("becky-nick@kalashianfamily.com", "Nick & Rebecca"), "RSVP Confirmation | Becky & Nick's Wedding", new Email(model.EmailAddress, model.Name), new Content("text/html", this.RenderPartialViewToString("RSVPEmail", model)));
+
+            await sendGrid.client.mail.send.post(requestBody: mail.Get());
         }
 
         //private static async Task<bool> VerifyReCaptcha(string response, string ipAddr)
